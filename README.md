@@ -1,5 +1,7 @@
 # Data-Structures-and-Algorithms-Game-Player
 Programmed a player in C++ to compete against other versions in a provided four-player game.  Secured a place in the final round, ranking among the top 16 out of 263 student players.
+All the files starting by AI were players I programmed, the version that arrived to the last round is AILOLITOIO122 and the version that competed in the final is AILOLITOIOhoag.
+The rest of the files were given by the statement.
 
 # 1 Introduction
 Crematoria is a planet in the Igneon System. Many years ago, its surface was not habitable because of its extreme temperatures: one would be incinerated if in the sunlight, or frozen solid at night. Because there was only a small buffer of minutes where travel on the surface was possible, a maximum security prison was built in some caves underground, from where it was almost impossible to escape. Some elevators connected the surface of the planet to the prison.
@@ -84,4 +86,94 @@ The first thing you should do is downloading the source code. It includes a C++ 
 
 ## 3.1 Running your first game
 Here, we will explain how to run the game under Linux, but it should work under Windows, Mac, FreeBSD, OpenSolaris, …You only need a recent g++ version, make installed in your system, plus a modern browser like Firefox or Chrome.
+1) Open a console and cd to the directory where you extracted the source code.
 
+2) If, for example, you are using Linux, run:
+
+cp AIDummy.o.Linux AIDummy.o
+
+cp Board.o.Linux Board.o
+
+3) Run
+
+make all
+
+to build the game and all the players. Note that Makefile identifies as a player any file matching AI*.cc.
+
+4) This creates an executable file called Game. This executable allows you to run a game using a command like:
+
+./Game Demo Demo Demo Demo -s 30 -i default.cnf -o default.res
+
+This starts a match, with random seed 30, of four instances of the player Demo, in the board defined in default.cnf. The output of this match is redirected to default.res.
+
+5) To watch a game, open the viewer file viewer.html with your browser and load the file default.res.
+
+Use
+
+./Game --help
+
+to see the list of parameters that you can use. Particularly useful is
+
+./Game --list
+
+to show all the recognized player names.
+
+
+
+If needed, remember that you can run
+
+make clean
+
+to delete the executable and object files and start over the build.
+
+## 3.2 Adding your player
+To create a new player with, say, name Riddick, copy AINull.cc (an empty player that is provided as a template) to a new file AIRiddick.cc. Then, edit the new file and change the
+
+#define PLAYER_NAME Null
+line to
+
+#define PLAYER_NAME Riddick
+The name that you choose for your player must be unique, non-offensive and at most 12 characters long. This name will be shown in the website and during the matches.
+
+Afterwards, you can start implementing the virtual method play(), inherited from the base class Player. This method, which will be called every round, must decide the orders to give to your units.
+
+You can define auxiliary type definitions, variables and methods inside your player class, but the entry point of your code will always be the play() method.
+
+From your player class you can also call functions to access the state of the game. Those functions are made available to your code using inheritance, but do not tell your Software Engineering teachers because they might not like it. The documentation about the available functions can be found in an additional file.
+
+Note that you must not edit the factory() method of your player class, nor the last line that adds your player to the list of available players.
+
+## 3.3 Restrictions when submitting your player
+When you think that your player is strong enough to enter the competition, you can submit it to the Jutge. Since it will run in a secure environment to prevent cheating, some restrictions apply to your code:
+
+All your source code must be in a single file (like AIRiddick.cc).
+You cannot use global variables (instead, use attributes in your class).
+You are only allowed to use standard libraries like iostream, vector, map, set, queue, algorithm, cmath, …In many cases, you don’t even need to include the corresponding library.
+You cannot open files nor do any other system calls (threads, forks, …).
+Your CPU time and memory usage will be limited, while they are not in your local environment when executing with ./Game.
+Your program should not write to cout nor read from cin. You can write debug information to cerr, but remember that doing so in the code that you upload can waste part of your limited CPU time.
+If your program needs (pseudo) random numbers, you must use two methods provided by the game: random(l, u), which returns a random integer in [l..u], and (less frequently) random_permutation(n), which returns a vector<int> with a random permutation of [0..n-1].
+Note that the valid directions are Bottom, BR, Right, RT, Top, TL, Left, LB, Up, Down and None, corresponding to integers from 0 to 10. The circular definition between 0 and 7 can be used to simplify the implementation of your player. See the Demo player for some examples.
+Any submission to the Jutge must be an honest attempt to play the game. Any try to cheat in any way will be severely penalized.
+4 Tips
+DO NOT GIVE OR ASK YOUR CODE TO/FROM ANYBODY. Not even an old version. Not even to your best friend. Not even from students of previous years. We will use plagiarism detectors to compare pairwise all submissions (and we will include in the comparison all programs from previous competitions!). However, you can share the compiled .o files.
+Any detected plagiarism will result in an overall grade of 0 in the course (not only in the Game) of all involved students. Additional disciplinary measures might also be taken. If student A and B are involved, measures will be applied to both of them, independently of who created the original code. No exceptions will be made under any circumstances.
+
+Read the headers of the classes that you are going to use. Do not worry about the private parts or the implementation.
+Start with simple strategies, easy to code and debug, since this is exactly what you will need at the beginning.
+Define simple (but useful) auxiliary methods, and make sure that they work properly.
+Before you strat competing with your classmates, focus on defeating the “Dummy”.
+Keep a copy of the old versions of your player. Make it fight against its previous versions to measure the improvements.
+As always, compile and test your code often. It is much easier to trace a bug when you have only changed a few lines of code.
+Use cerr to output debug information, and add asserts to make sure that your code is doing what it should do. Remember to remove them before uploading your code, to avoid making it slower.
+When debugging a player, remove the cerrs that you may have in others players’ code, so as to only see the messages that you want.
+If using cerr is not enough to debug some of your code, learn how to use valgrind, gdb or any other debugging tool.
+Make sure that your program is fast enough. The CPU time that you are allowed to use is rather short.
+Try to figure out the strategies of other players watching several games. This way, you can try to react against them, or even imitate or improve them in your own code.
+You can, however, share the compiled .o files.
+You can submit new versions of your program at any time.
+Do not wait until the last minute to submit your player. When there are lots of submissions at the same time, it takes longer for the server to run the games, and it could be too late!
+Remember: Keep your code simple, build often, test often. Or regret.
+
+1 This game is based on the film “The Chronicles of Riddick”. It’s not the best film ever made, but it’s wacky and weird, which are obviously good qualities.
+2 Incidentally, this is a basic rule of most games in Jutge.org, where you capture units by killing them.
