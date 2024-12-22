@@ -2,7 +2,7 @@
 Programmed a player in C++ to compete against other versions in a provided four-player game.  Secured a place in the final round, ranking among the top 16 out of 263 student players.
 All the files starting by AI were players I programmed, the version that arrived to the last round is AILOLITOIO122 and the version that competed in the final is AILOLITOIOhoag.
 The rest of the files were given by the statement.
-
+You can see the competition and rounds in https://jutge.org/competitions/EDA:EDA_Q1_2023_24/results.
 # 1 Introduction
 Crematoria is a planet in the Igneon System. Many years ago, its surface was not habitable because of its extreme temperatures: one would be incinerated if in the sunlight, or frozen solid at night. Because there was only a small buffer of minutes where travel on the surface was possible, a maximum security prison was built in some caves underground, from where it was almost impossible to escape. Some elevators connected the surface of the planet to the prison.
 
